@@ -2,12 +2,17 @@
 
 This repository provides a skeleton with some files in order for you to get started creating your own CI-CD solution using Jenkins and to create your first AWS Lambda following a common pattern in the industry.
 
+## Desired application diagram
+
+![Application diagram](assets/week2-serverless-cicd.jpg?raw=true "Application diagram")
+
 ## Project files
 
 - Under the `www` folder, there are two files: `index.html` and `error.html`. These are the files we will deploy for our static website on an AWS S3 Bucket.
 - `deploy_ec2_network_v1.json` is the CloudFormation template to automate the process of creating an EC2 instance on AWS, assign the necessary roles and policies and add some security settings that are needed for Jenkins to be able to run on the EC2 instance. Note that you do not need to know what the whole template does line by line. We will, in fact, spend some more time next week working with these concepts on AWS.
 - `your-first-lambda.py` is the Lambda function that you will deploy in AWS and eventually invoke once you deploy your static website on AWS. Modify it to include the names of your group members.
 - `sample_unit_test.py` contains some sample unit tests (using unittest -add link to python docs here-) and will serve you to test your CI job in Jenkins. One or more of the tests are failing at the moment.
+- `assets` folder. Just support assets for the project (e.g. images). Feel free to add your own when you fork the repo :smile:
 
 ## Tasks
 
