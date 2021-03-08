@@ -30,7 +30,7 @@ This repository provides a skeleton with some files in order for you to get star
 
 Then, create a new **stack** based on your CloudFormation template on AWS.
 
-- Install and configure Jenkins on your EC2 instance. You will first need to connect to your EC2 instance. There are several ways to achieve this, you can find an example [here](https://github.com/makersacademy/devops-course/tree/main/serverless-cicdd#supporting-materials)
+- Install and configure Jenkins on your EC2 instance. You will first need to connect to your EC2 instance. There are several ways to achieve this, you can find an example [here](https://github.com/makersacademy/devops-course/tree/main/serverless-cicd#supporting-materials)
 
 - You will know you have successfully installed Jenkins after you open your `EC2 instance public http url` on the browser and you get a `Getting Started` window with the following title: `Unlock Jenkins`.
 
