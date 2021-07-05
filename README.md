@@ -26,27 +26,31 @@ This repository provides a skeleton with some files in order for you to get star
 - Jenkins can in fact run on your local machine, so why bother really setting up an EC2 instance for Jenkins to run on it?
 :pencil: Have a group discussion and think about the advantages and disavantages of each of these approaches before you move on.
 
-- In order to create your EC2 instance with all it needs for you to set up Jenkins, take a look at the `CloudFormation` template added in the project. The template is made to work as is, however, you need to add the identifier for your S3 bucket you created previously. Can you spot where you need to add it?
+- In order to create your EC2 instance with all it needs for you to set up Jenkins, take a look at the `CloudFormation` template added in the project. The template is made to work pretty much as is. The *only section you need to modify* is the identifier for the S3 bucket you created previously. Can you spot where you need to add it?
 
 Then, create a new **stack** based on your CloudFormation template on AWS.
 
-- Install and configure Jenkins on your EC2 instance. You will first need to connect to your EC2 instance. There are several ways to achieve this, you can find an example [here](https://github.com/makersacademy/devops-course/tree/main/serverless-cicd#supporting-materials)
+- Install and configure Jenkins on your EC2 instance. You will first need to connect to your EC2 instance. There are several ways to achieve this, you can find an example [here](https://github.com/makersacademy/devops-course/tree/main/serverless-cicd#supporting-materials).
 
 - You will know you have successfully installed Jenkins after you open your `EC2 instance public http url` on the browser and you get a `Getting Started` window with the following title: `Unlock Jenkins`.
 
 - Once you get to this stage, research how you can gain access to the Jenkins home screen (and I suggest you install the plugins that Jenkins recommends).
 
+### Create new Jenkins item
+
+- Once Jenkins is fully set up. It is time to add a `New Item`. The one we will use for this project will be of type `Pipeline`, and not a freestyle project!
 
 ### Add a webhook for GitHub to notify Jenkins
 
 - Now you have successfully installed Jenkins, excellent work! The next step is to figure out how your GitHub repository is going to contact your Jenkins instance when an `event` occurs. And which events should be taken into account? Some of them? All of them?
 
-
 ### Add CI to your project
-- Now that you know what CI is. What sort of steps do you think you should include in your Jenkins job? What sort of checks should you include before your application is deployed to the Cloud?
+- Now that you know what CI is. What sort of steps do you think you should include in your Jenkins job (aka `Jenkinsfile`)? What sort of checks should you include before your application is deployed to the Cloud?
 - Remember that, ultimately, the idea is for your job to pass all the necessary checks before moving to the CD task.
 
 - That's great! But, shouldn't Jenkins have some sort of access to my GitHub repository to access the application files? Maybe you're right! Research the following and discuss in your group: `Jenkins credentials`
+
+:exclamation: Important: Regarding the above, the only credentials that we are seeking to set are those that will allow Jenkins to succesfully connect to our project GitHub repo :grinning: - So please do not set any sort of Cloud Credentials in Jenkins for you as users of your Jenkins server.
 
 ### Add CD to your project
 - Great job! Now you have a passing CI job, the next step is to be able to deploy your application to the S3 bucket you created initially.
@@ -78,3 +82,16 @@ For an extra stretch, feel free to add additional settings like `metrics` and `l
 - What do you think could have been improved in this project? Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
 
 - Finally, if you have some extra time this week, you should work on growing your understanding of Infrastructure Management and Orchestration (using `Terraform`). What benefits do you see it can bring to a larger project or even to this one?
+
+### Supporting Materials
+
+- [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
+- [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
+- [Installing Jenkins](https://www.jenkins.io/doc/book/installing/linux/)
+- [Set Up a Jenkins Build Server](https://aws.amazon.com/getting-started/hands-on/setup-jenkins-build-server/)
+
+
+### Additional Resources
+
+- [AWS S3 Bucket](https://aws.amazon.com/s3/)
+- [Terraform](https://www.terraform.io/docs/index.html)
