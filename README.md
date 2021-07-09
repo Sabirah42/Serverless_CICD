@@ -48,12 +48,12 @@ Then, create a new **stack** based on your CloudFormation template on AWS.
 - Now that you know what CI is. What sort of steps do you think you should include in your Jenkins job (aka `Jenkinsfile`)? What sort of checks should you include before your application is deployed to the Cloud?
 - Remember that, ultimately, the idea is for your job to pass all the necessary checks before moving to the CD task.
 
-- That's great! But, shouldn't Jenkins have some sort of access to my GitHub repository to access the application files? Maybe you're right! Research the following and discuss in your group: `Jenkins credentials`
+That's great! But, shouldn't Jenkins have some sort of access to my GitHub repository to access the application files? Maybe you're right! Research the following and discuss in your group: `Jenkins credentials`.
 
 :exclamation: Important: Regarding the above, the only credentials that we are seeking to set are those that will allow Jenkins to succesfully connect to our project GitHub repo :grinning: - So please do not set any sort of Cloud Credentials in Jenkins for you as users of your Jenkins server.
 
 ### Add CD to your project
-- Great job! Now you have a passing CI job, the next step is to be able to deploy your application to the S3 bucket you created initially.
+- Great job! Now you have a green CI job, the next step is to be able to deploy your application to the S3 bucket you created initially.
 
 ### AWS Lambda
 
@@ -79,17 +79,20 @@ For an extra stretch, feel free to add additional settings like `metrics` and `l
 
 ## Bonus
 
-- What do you think could have been improved in this project? Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
+Think about what could have been improved in this project:
+- Is it considered best practice to add both the CI and CD bits in one single script?
+- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
 
-- Finally, if you have some extra time this week, you should work on growing your understanding of Infrastructure Management and Orchestration (using `Terraform`). What benefits do you see it can bring to a larger project or even to this one?
+Finally, if you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration (using `Terraform`). What benefits do you see it can bring to a larger project or even to this one?
 
 ### Supporting Materials
 
 - [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
-- [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
 - [Installing Jenkins](https://www.jenkins.io/doc/book/installing/linux/)
-- [Set Up a Jenkins Build Server](https://aws.amazon.com/getting-started/hands-on/setup-jenkins-build-server/)
-
+- [Setting up Jenkins on AWS](https://dev.to/alakazam03/setting-up-jenkins-on-aws-21pf)
+- [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
+- [Automating Continuous Integration through Jenkins](https://dev.to/alakazam03/automating-continuous-integration-through-jenkins-448b)
+- [Using AWS Lambda with Amazon API Gateway](https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html)
 
 ### Additional Resources
 
