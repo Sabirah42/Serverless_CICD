@@ -4,7 +4,7 @@
   "Parameters": {
     "KeyP": {
       "Type": "AWS::EC2::KeyPair::KeyName",
-      "Description": "Please select Key"
+      "Description": "Please select key pair"
     },
     "InstanceType": {
       "Type": "String",
