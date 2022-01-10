@@ -38,7 +38,7 @@ Then, create a new **stack** based on your CloudFormation template on AWS.
 
 ### Create new Jenkins item
 
-- Once Jenkins is fully set up. It is time to add a `New Item`. The one we will use for this project will be of type `Pipeline`, and not a freestyle project!
+- Once Jenkins is fully set up. It is time to add a `New Item`. The one we will use for this project will be of type `Freestyle`.
 
 ### Add a webhook for GitHub to notify Jenkins
 
