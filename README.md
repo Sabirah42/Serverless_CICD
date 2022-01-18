@@ -88,8 +88,7 @@ Finally, if you have some extra time this week, start reading and getting famili
 ### Supporting Materials
 
 - [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
-- [Installing Jenkins](https://www.jenkins.io/doc/book/installing/linux/)
-- [Setting up Jenkins on AWS](https://dev.to/alakazam03/setting-up-jenkins-on-aws-21pf)
+- [Jenkins on AWS](https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/)
 - [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
 - [Automating Continuous Integration through Jenkins](https://dev.to/alakazam03/automating-continuous-integration-through-jenkins-448b)
 - [Using AWS Lambda with Amazon API Gateway](https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html)
