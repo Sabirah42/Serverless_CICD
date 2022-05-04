@@ -5,9 +5,12 @@ This repository provides a skeleton with some files in order for you to get star
 - your own CI-CD solution using [Jenkins](https://www.jenkins.io/) 
 - a Serverless backend for the site you will be deploying using [AWS Lambda](https://aws.amazon.com/lambda/), following a common industry pattern.
 
-There is some [documentation](#documentation) available to help you understand the files in this repo.
+In this README you will find:
 
-There are also [resources](#supporting-materials) that can serve as starting points to help you tackle some of the tasks.
+- [Diagrams](#desired-application-and-deployment-process) that serve as the main description of what you should be building.
+- A series of high-level [tasks](#getting-started) to guide you through the project.
+- Some [documentation](#documentation) to help you understand the files in this repo 
+- [Resources](#supporting-materials) that can serve as starting points to help you tackle some of the tasks.
 
 ## Desired application and deployment process
 
@@ -90,11 +93,13 @@ This will give you a better idea of what you want to use Jenkins for and help yo
 > :information_source: You can find many examples of CI-CD pipeline diagrams online that you can use for inspiration.
 > The resources shared with you during the CI-CD workshop will also help with this.
 
-### Set up the CI-CD pipeline
+### Set up the pipeline
 
 Below you will find a high-level list of the tasks that are necessary for you to sucessfully set up the Jenkins pipeline in CI-CD.
-Some tasks are prerequsities to other tasks but in some cases, the order is somewhat flexible.
-Guides you find in your research may go through these in a slightly different order, so dn't worry if you end performing some steps in a different order from the one given here.
+
+> :information_source: Not all of the tasks below need to be completed in the exact order they are given here.
+Guides you may come across in your research might go through these in a slightly different order. 
+Don't worry if you end performing some steps in a different order from the one given here.
 
 - Using the Jenkins classic UI, set up a new [Pipeline project](https://www.jenkins.io/doc/book/pipeline/).
 - Give Jenkins access to your GitHub repository by giving Jenkins the right **credentials**.
@@ -140,10 +145,6 @@ Feel free to play around and try things out.
 
 ## Bonus
 
-### Monitoring and logging
-
-Configure your Serverless backend so that you can monitor and view logs for it in [AWS CloudWatch].
-
 ### Improve your CI-CD pipeline
 
 Think about what could have been improved in this project:
@@ -151,14 +152,16 @@ Think about what could have been improved in this project:
 - Are there any drawbacks to putting both the CI and CD bits in one single `Jenkinsfile`? Can you find a way to put them in separate scripts but preserve the automatic deployment behaviour?
 - Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
 
+### Monitoring and logging
+
+Configure your Serverless backend so that you can monitor and view logs for it in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
+
 ### Look ahead
 
 If you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration using **Terraform**.
 What benefits do you see it can bring to a larger project or even to this one?
 
 ## Documentation
-
-This application is partially documented. Some documentation is more extensive than you would find in the real world, and some areas leave room for you to discover.
 
 ### Project files
 
@@ -168,7 +171,7 @@ This application is partially documented. Some documentation is more extensive t
 - `sample_unit_test.py` contains some sample unit tests and will serve you to test your CI job in Jenkins. One or more of the tests are failing at the moment. The framework used for the tests is [unittest](https://docs.python.org/3/library/unittest.html)
 - `assets` folder: files in this folder doesn't need to be deployed. It contains support assets for this README (e.g. images).
 
-### Supporting Materials
+## Supporting Materials
 
 - [AWS S3 Bucket](https://aws.amazon.com/s3/)
 - [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
