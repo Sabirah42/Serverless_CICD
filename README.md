@@ -1,92 +1,176 @@
-# serverless-cicd
+# Serverless CI-CD
 
-This repository provides a skeleton with some files in order for you to get started creating your own CI-CD solution using Jenkins and to create your first AWS Lambda following a common pattern in the industry.
+This repository provides a skeleton with some files in order for you to get started creating:
 
-## Desired application diagram
+- your own CI-CD solution using [Jenkins](https://www.jenkins.io/) 
+- a Serverless backend for the site you will be deploying using [AWS Lambda](https://aws.amazon.com/lambda/), following a common industry pattern.
 
-![Application diagram](assets/week2-serverless-cicd.jpg?raw=true "Application diagram")
+There is some [documentation](#documentation) available to help you understand the files in this repo.
 
-## Project files
+There are also [resources](#supporting-materials) that can serve as starting points to help you tackle some of the tasks.
+
+## Desired application and deployment process
+
+Below, you fill find some diagrams that describe the system you have been asked to build in a bit more detail. 
+
+Even so, you'll find that they leave some questions unanswered: some arrows have been left unlabelled and the inner workings of some of the tools involved are not explained.
+The missing bits are for you to research and discover!
+
+### Application diagram
+
+The following diagram shows how the application should work once deployed. 
+
+![Application diagram](assets/application_diagram.jpg?raw=true "Application diagram")
+
+The diagram shows that the app is composed of:
+- a static site hosted on S3 and accessible through the browser,
+- and a backend which the site sends requests to.
+  
+The backend should be powered by AWS Lambda.
+The frontend should access the backend through the Amazon API Gateway.
+
+### Deployment process diagram
+
+The next diagram illustrates how the application should be deployed:
+
+- The code for the app should be hosted on GitHub
+- Jenkins should be used to automatically deploy the application code to AWS S3.
+  
+![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true "Deployment process diagram")
+
+
+## Getting Started
+
+As a team, using the diagrams and high-level tasks shared below as a starting point, map out what you understand so far, what open questions you have, and what you will need to research.
+
+Keep modifying and expanding the diagrams you've been given with what you find.
+
+## Set up S3
+
+S3 is an [Object storage](https://cloud.netapp.com/blog/block-storage-vs-object-storage-cloud) service by AWS. 
+
+- Create an S3 Bucket and configure it to host your static website.
+- Check that the static site works by visiting it in your browser.
+
+## Set up Jenkins
+
+Set up an [EC2 instance](https://docs.aws.amazon.com/ec2/index.html) using the [CloudFormation]((https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)) [template](deploy_ec2_network_v1.json) provided in this repo and install Jenkins on it.
+
+> :information_source: This and the following few tasks related with Jenkins and CI/CD are likely to take some time and dedicated research. It is also likely that you encounter some obstacles along the way, so this is a great chance to get hands-on and sharpen your debugging skills, read through logs and error messages. You can do this!
+
+### Some hints
+
+1. The template is made to work pretty much as is. The *only section you need to modify* is the identifier for the S3 bucket you created previously. Can you spot where you need to add it?
+2. Using the template, you will need to create something called a **stack** using the CloudFormation template on AWS.
+3. You will know you have successfully installed Jenkins after you open your `EC2 instance public http url` on the browser and you get a `Getting Started` window with the following title: `Unlock Jenkins`.
+4. Once you've unlocked Jenkins, install the plugins it recommends.
+
+### Check your understanding
+
+Jenkins can in fact run on your local machine, so why bother setting up an EC2 instance for Jenkins to run on it?
+
+:pencil: Have a group discussion and think about the advantages and disavantages of each of these approaches before you move on.
+
+## Set up a CI-CD pipeline in Jenkins
+
+### Create a diagram of your desired pipeline
+
+Consult your diagram(s) again and revisit what you know so far about CI-CD pipelines and their benefits.
+
+![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true "Deployment process diagram")
+
+What should checks and actions should your CI-CD pipeline perform? 
+When should these checks and actions run?
+
+Remember that, ultimately, the idea is for your pipeline to only proceed to deploying the code if the checks pass.
+
+If you haven't already, expand the diagram above so that it illustrates in more detail what should happens in the "Jenkins" step.
+This will give you a better idea of what you want to use Jenkins for and help you research the right things.
+
+> :information_source: You can find many examples of CI-CD pipeline diagrams online that you can use for inspiration.
+> The resources shared with you during the CI-CD workshop will also help with this.
+
+### Set up the CI-CD pipeline
+
+Below you will find a high-level list of the tasks that are necessary for you to sucessfully set up the Jenkins pipeline in CI-CD.
+Some tasks are prerequsities to other tasks but in some cases, the order is somewhat flexible.
+Guides you find in your research may go through these in a slightly different order, so dn't worry if you end performing some steps in a different order from the one given here.
+
+- Using the Jenkins classic UI, set up a new [Pipeline project](https://www.jenkins.io/doc/book/pipeline/).
+- Give Jenkins access to your GitHub repository by giving Jenkins the right **credentials**.
+- Using a **webhook**, set up GitHub to automatically trigger your pipeline to run. What events should ideally trigger your pipeline to run?
+- By writing a `Jenkinsfile`, set up the CI part of your pipeline. It should run checks to make sure the code in your repository is good to be deployed.
+- Extend your `Jenkinsfile` with a step that deploys your application to the S3 bucket you created initially.
+
+## Set up the Serverless backend
+
+Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend for it and connecting it to the static site.
+
+> :warning: Before moving on to this task, make sure you have successfully deployed your HTML files to your S3 Bucket.
+
+### Diagramming the backend
+
+Revisit your diagram(s) again.
+What services will you need to research next?
+
+![Application diagram](assets/application_diagram.jpg?raw=true "Application diagram")
+
+Can you flesh out your understanding of the connection between the static site, API Gateway and AWS Lambda?
+
+What are the **Request** and **Response** labels on the arrows likely to represent?
+
+Improve this diagram as you learn more.
+
+### Tasks
+
+- Using the AWS Lambda service in the AWS Console, set up set up an Python Lambda function whose definition matches the one in the [`your-first-lambda.py`](your-first-lambda.py) file. Do not forget to modify it!
+- Set up an API Gateway **endpoint** which, will **invoke** the Lambda function you created whenever a request is made to it. Explore the `www/index.html` file. Can you spot which type of request your website performs?
+- Connect the static site to the API Gateway endpoint.
+
+### Check your understanding
+
+You've set up your first Serverless backend, congratulations on the hard and great work!
+Here are some questions to help you deepen your understanding of what you've built:
+
+- Is API Gateway the only way of invoking a Lambda function?
+- What are the advantages of using API Gateway?
+- Could you invoke a Lambda function directly?
+
+Feel free to play around and try things out. 
+
+## Bonus
+
+### Monitoring and logging
+
+Configure your Serverless backend so that you can monitor and view logs for it in [AWS CloudWatch].
+
+### Improve your CI-CD pipeline
+
+Think about what could have been improved in this project:
+
+- Are there any drawbacks to putting both the CI and CD bits in one single `Jenkinsfile`? Can you find a way to put them in separate scripts but preserve the automatic deployment behaviour?
+- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
+
+### Look ahead
+
+If you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration using **Terraform**.
+What benefits do you see it can bring to a larger project or even to this one?
+
+## Documentation
+
+This application is partially documented. Some documentation is more extensive than you would find in the real world, and some areas leave room for you to discover.
+
+### Project files
 
 - Under the `www` folder, there are two files: `index.html` and `error.html`. These are the files we will deploy for our static website on an AWS S3 Bucket.
 - `deploy_ec2_network_v1.json` is the [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) template to automate the process of creating an EC2 instance on AWS, assign the necessary roles and policies and add some security settings that are needed for Jenkins to be able to run on the EC2 instance. Note that you do not need to know what the whole template does line by line. We will, in fact, spend some more time next week working with these concepts on AWS.
 - `your-first-lambda.py` is the Lambda function that you will deploy in AWS and eventually invoke once you deploy your static website on AWS. Modify it to include the names of your group members.
 - `sample_unit_test.py` contains some sample unit tests and will serve you to test your CI job in Jenkins. One or more of the tests are failing at the moment. The framework used for the tests is [unittest](https://docs.python.org/3/library/unittest.html)
-- `assets` folder. Just support assets for the project (e.g. images). Feel free to add your own when you fork the repo :smile:
-
-## Tasks
-
-### Create an S3 Bucket for your static website on AWS
-- S3 is an [Object storage](https://cloud.netapp.com/blog/block-storage-vs-object-storage-cloud) service by AWS. Then, you may be wondering how is it possible that such service can host a static website. You will need to find out how you can enable your bucket to host a static website.
-
-### Setting up Jenkins on an EC2 instance (server)
-
-:information_source: This and the following few tasks related with Jenkins and CI/CD are likely to take some time and dedicated research. It is also likely that you encounter some pebbles (if not stones!) along the way, so this is a great chance to get hands-on and sharpen your debugging skills, read through logs and error messages. You can do this!
-
-- Jenkins can in fact run on your local machine, so why bother really setting up an EC2 instance for Jenkins to run on it?
-:pencil: Have a group discussion and think about the advantages and disavantages of each of these approaches before you move on.
-
-- In order to create your EC2 instance with all it needs for you to set up Jenkins, take a look at the `CloudFormation` template added in the project. The template is made to work pretty much as is. The *only section you need to modify* is the identifier for the S3 bucket you created previously. Can you spot where you need to add it?
-
-Then, create a new **stack** based on your CloudFormation template on AWS.
-
-- Install and configure Jenkins on your EC2 instance. You will first need to connect to your EC2 instance. There are several ways to achieve this, you can find an example [here](#supporting-materials).
-
-- You will know you have successfully installed Jenkins after you open your `EC2 instance public http url` on the browser and you get a `Getting Started` window with the following title: `Unlock Jenkins`.
-
-- Once you get to this stage, research how you can gain access to the Jenkins home screen (and I suggest you install the plugins that Jenkins recommends).
-
-### Create new Jenkins item
-
-- Once Jenkins is fully set up. It is time to add a `New Item`. The one we will use for this project will be of type `Pipeline`, and not a freestyle project!
-
-### Add a webhook for GitHub to notify Jenkins
-
-- Now you have successfully installed Jenkins, excellent work! The next step is to figure out how your GitHub repository is going to contact your Jenkins instance when an `event` occurs. And which events should be taken into account? Some of them? All of them?
-
-### Add CI to your project
-- Now that you know what CI is. What sort of steps do you think you should include in your Jenkins job (aka `Jenkinsfile`)? What sort of checks should you include before your application is deployed to the Cloud?
-- Remember that, ultimately, the idea is for your job to pass all the necessary checks before moving to the CD task.
-
-That's great! But, shouldn't Jenkins have some sort of access to my GitHub repository to access the application files? Maybe you're right! Research the following and discuss in your group: `Jenkins credentials`.
-
-:exclamation: Important: Regarding the above, the only credentials that we are seeking to set are those that will allow Jenkins to succesfully connect to our project GitHub repo :grinning: - So please do not set any sort of Cloud Credentials in Jenkins for you as users of your Jenkins server.
-
-### Add CD to your project
-- Great job! Now you have a green CI job, the next step is to be able to deploy your application to the S3 bucket you created initially.
-
-### AWS Lambda
-
-Before moving on to this task, make sure you have successfully deployed your `html` files to your S3 Bucket.
-
-- On the AWS Console, access the AWS Lambda service and create a Python Lambda function whose definition matches the one in the `your-first-lambda.py` file. Do not forget to modify it!
-
-Great job! You've created your first Lambda function on AWS, how exciting! Now you may be wondering, okay, how do we `invoke` it?
-
-### API Gateway
-
-You've reached the last task of the week project, congratulations on the hard and great work! You have a general idea about the purpose of API Gateway from the session on Monday and the diagram. We will use API Gateway on AWS to invoke our Lambda function, however:
-
-- Is this the only way of invoking a Lambda function?
-- What are the advantages of using API Gateway?
-- Could you invoke a Lambda function directly?
-
-The final task is to create an API Gateway `endpoint` that you can consume in order to invoke your Lambda function.
-
-:bulb: Explore the `www/index.html` file. Can you spot which type of request you should perform?
-
-For an extra stretch, feel free to add additional settings like `metrics` and `logging` to your API Gateway endpoint. You can monitor these on `AWS CloudWatch`.
-
-## Bonus
-
-Think about what could have been improved in this project:
-- Is it considered best practice to add both the CI and CD bits in one single script?
-- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
-
-Finally, if you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration (using `Terraform`). What benefits do you see it can bring to a larger project or even to this one?
+- `assets` folder: files in this folder doesn't need to be deployed. It contains support assets for this README (e.g. images).
 
 ### Supporting Materials
 
+- [AWS S3 Bucket](https://aws.amazon.com/s3/)
 - [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 - [Jenkins on AWS](https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/)
 - [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
@@ -95,5 +179,4 @@ Finally, if you have some extra time this week, start reading and getting famili
 
 ### Additional Resources
 
-- [AWS S3 Bucket](https://aws.amazon.com/s3/)
 - [Terraform](https://www.terraform.io/docs/index.html)
