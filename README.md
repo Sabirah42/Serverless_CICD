@@ -28,8 +28,8 @@ The following diagram shows how the application should work once deployed.
 The diagram shows that the app is composed of:
 - a static site hosted on S3 and accessible through the browser,
 - and a backend which the site sends requests to.
-  
-The backend should be powered by AWS Lambda. The frontend should access AWS Lambda through the Amazon API Gateway.
+
+It also shows that the backend should be powered by AWS Lambda and that the frontend should access AWS Lambda through a service called Amazon API Gateway.
 
 ### Deployment process diagram
 
@@ -40,10 +40,9 @@ The next diagram illustrates how the application should be deployed:
   
 ![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true "Deployment process diagram")
 
-
 ## Getting Started
 
-As a team, using the diagrams and high-level tasks shared below as a starting point, map out what you understand so far, what open questions you have, and what you will need to research.
+As a team, using the diagrams and high-level tasks shared below as a starting point, map out what you understand so far and what open questions you will need to research.
 
 Keep modifying and expanding the diagrams you've been given with what you find.
 
@@ -58,9 +57,9 @@ S3 is an [Object storage](https://cloud.netapp.com/blog/block-storage-vs-object-
 
 Set up an [EC2 instance](https://docs.aws.amazon.com/ec2/index.html) using the [CloudFormation]((https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html)) [template](deploy_ec2_network_v1.json) provided in this repo and install Jenkins on it.
 
-> :information_source: The Jenkins-related taasks are likely to take some time and dedicated research. It is also likely that you encounter some obstacles along the way, so this is a great chance to get hands-on and sharpen your debugging skills by finding and reading through logs and error messages. You can do this!
+> :information_source: The Jenkins-related tasks are likely to take some time and dedicated research. It is also likely that you encounter some obstacles along the way, so this is a great chance to get hands-on and sharpen your debugging skills by finding and reading through logs and error messages. You can do this!
 
-### Some hints
+### A few tips
 
 1. The template is made to work pretty much as is. The *only section you need to modify* is the identifier for the S3 bucket you created previously. Can you spot where you need to add it?
 2. Using the template, you will need to create something called a **stack** using the CloudFormation template on AWS.
@@ -72,23 +71,23 @@ Set up an [EC2 instance](https://docs.aws.amazon.com/ec2/index.html) using the [
 Jenkins can in fact run on your local machine, so why bother setting up an EC2 instance for Jenkins to run on it?
 
 :pencil: Have a group discussion and think about the advantages and disavantages of each of these approaches before you move on.
+If you think it would be useful for your understanding, make a note to discuss this with the cohort or a coach.
 
 ## Set up a CI-CD pipeline in Jenkins
 
 ### Create a diagram of your desired pipeline
 
-Consult your diagram(s) again and revisit what you know so far about CI-CD pipelines and their benefits.
+Consult your diagrams again and revisit what you have learned so far about CI-CD pipelines and their benefits.
+What checks and actions should your CI-CD pipeline perform? When should these checks and actions be run?
+Remember that, ultimately, the idea is for your pipeline to only proceed to deploying the code if the checks pass.
 
 ![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true "Deployment process diagram")
 
-What checks and actions should your CI-CD pipeline perform? When should these checks and actions be run?
 
-Remember that, ultimately, the idea is for your pipeline to only proceed to deploying the code if the checks pass.
-
-If you haven't already, expand the diagram above so that it illustrates in more detail what should happens in the "Jenkins" step.
+If you haven't already, expand the diagram above so that it illustrates in more detail what should happen in the "Jenkins" step.
 This will give you a better idea of what you want to use Jenkins for and help you research the right things.
 
-> :information_source: You can find many examples of CI-CD pipeline diagrams online that you can use for inspiration. The resources shared with you during the CI-CD workshop will also help with this.
+> :information_source: The resources shared with you during the [CI-CD workshop](https://github.com/makersacademy/devops-course/blob/main/workshops/week-2/ci_cd_overview.md) might help with this.
 
 ### Set up the pipeline
 
@@ -96,11 +95,11 @@ Below you will find a high-level list of the tasks that are necessary for you to
 
 - Using the Jenkins classic UI, set up a new [Pipeline project](https://www.jenkins.io/doc/book/pipeline/).
 - Give Jenkins access to your GitHub repository by giving Jenkins the right **credentials**.
-- Using a **webhook**, set up GitHub to automatically trigger your pipeline to run. What events should ideally trigger your pipeline to run?
+- Using a **webhook**, set up GitHub to automatically trigger your pipeline. What events should ideally trigger your pipeline to run?
 - By writing a `Jenkinsfile`, set up the CI part of your pipeline. It should run checks to make sure the code in your repository is good to be deployed.
-- Extend your `Jenkinsfile` with a step that deploys your application to the S3 bucket you created initially.
+- Extend the `Jenkinsfile` with a step that deploys the application to the S3 bucket you created initially.
 
-> :information_source: Not all of the tasks above need to be completed in the exact order they are given here.  Guides you may come across in your research might go through these in a slightly different order. Don't worry if you end performing some steps in a different order from the one given here.
+> :information_source: Not all of the tasks above need to be completed in the exact order they are given here.  Guides you may come across in your research might go through these in a slightly different order. So don't worry if you end deviating from the order presented here.
 
 ### Check your understanding
 
@@ -109,34 +108,48 @@ Below you will find a high-level list of the tasks that are necessary for you to
 You've created a `Jenkinsfile`, but do you know how it works?
 Spend some time understanding each line in the file and adding explanatory comments to it.
 
-Here are a few questions to ask yourself:
+Here are a few questions to ask yourself and try to answer through a bit of research if need be:
+
 - On what machine do the commands in your Jenkinsfile run?
-- What part of your `Jenkinsfile` ensures that the correct version of Python will be available to run the code?
+- What part of your `Jenkinsfile` ensures that the correct version of Python will be available to run the code? How?
+- What does the `stage` keyword mean? How does it relate to the diagram you drew to illustrate the CI-CD pipeline you planned?
+
+Again, make a note to check your understanding with a peer, the cohort or a coach.
 
 #### How does Jenkins get access to your repo?
 
 You've set up a connection between Jenkins running on the EC2 instance and your GitHub repository.
 But how does it work?
 
-- How does Jenkins find out there was a change to your GitHub repo? 
+- Via what mechanism does Jenkins find out there was a change to your GitHub repo? 
 - How does Jenkins retrieve a copy of the repository? Where does it clone your repository to?
 
-Try to be as detailed and specific as possible! Perhaps a [sequence diagram](https://playground.diagram.codes/d/sequence) could be a good fit for this?
+Try to be as detailed and specific as possible! Perhaps a [sequence diagram](https://playground.diagram.codes/d/sequence) could be a good fit for this.
 
-![Application diagram](assets/jenkins_github_sequence_diagram.svg?raw=true "Application diagram")
+![Application diagram](assets/jenkins_github_sequence_diagram.svg "Application diagram")
 
-The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs will help you figure out what happens behind the scenes when you do a push.
+<details>
+  <summary><b>Click me to see a hint</b></summary>
+  :bulb: The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs and GitHub Webhook logs will help you figure out what happens behind the scenes when you do a push.
+</details>
+
+#### How does Jenkins get access to S3?
+
+Via what mechanism did you give Jenkins access to make changes to your S3 bucket? 
+Why did you need to do so?
+
+Don't worry about understanding the AWS mechanisms behind this in full detail.
+You'll be covering that in a future module!
 
 ## Set up the Serverless backend
 
-Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend for it and connecting it to the static site.
+Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend that the frontend site can make requests to.
 
 > :warning: Before moving on to this task, make sure you have successfully deployed your HTML files to your S3 Bucket.
 
 ### Diagramming the backend
 
-Revisit your diagram(s) again.
-What services will you need to research next?
+Revisit your diagram again. What services will you need to research next?
 
 ![Application diagram](assets/application_diagram.jpg?raw=true "Application diagram")
 
@@ -158,8 +171,8 @@ You've set up your first Serverless backend, congratulations on the hard and gre
 Here are some questions to help you deepen your understanding of what you've built:
 
 - Is API Gateway the only way of invoking a Lambda function?
-- What are the advantages of using API Gateway?
 - Could you invoke a Lambda function directly?
+- What are the advantages of using API Gateway? Do some research and discuss what you find with a peer, the cohort or a coach.
 
 Feel free to play around and try things out. 
 
@@ -170,7 +183,7 @@ Feel free to play around and try things out.
 Think about what could have been improved in this project:
 
 - Are there any drawbacks to putting both the CI and CD bits in one single `Jenkinsfile`? Can you find a way to put them in separate scripts but preserve the automatic deployment behaviour?
-- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console?
+- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console? How might you be able to automatically deploy changes to the Lambda function code?
 
 ### Monitoring and logging
 
@@ -179,7 +192,7 @@ Configure your Serverless backend so that you can monitor and view logs for it i
 ### Look ahead
 
 If you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration using **Terraform**.
-What benefits do you see it can bring to a larger project or even to this one?
+What benefits do you think it can bring to a larger project or even to this one?
 
 ## Documentation
 
