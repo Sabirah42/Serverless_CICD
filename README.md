@@ -124,12 +124,14 @@ But how does it work?
 - Via what mechanism does Jenkins find out there was a change to your GitHub repo? 
 - How does Jenkins retrieve a copy of the repository? Where does it clone your repository to?
 
-Try to be as detailed and specific as possible! Perhaps a [sequence diagram](https://playground.diagram.codes/d/sequence) could be a good fit for this.
+ Drawing a [sequence diagram](https://playground.diagram.codes/d/sequence) could be a good tool for understanding this. Here's an example to help you get started:
 
 ![Application diagram](assets/jenkins_github_sequence_diagram.svg "Application diagram")
 
+Try to be as detailed and specific as possible in your descriptions of each step.
+
 <details>
-  <summary><b>Click me to see a hint</b></summary>
+  <summary><b>Stuck?</b> Click here for some hints.</summary>
   :bulb: The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs and GitHub Webhook logs will help you figure out what happens behind the scenes when you do a push.
 </details>
 
@@ -143,7 +145,7 @@ You'll be covering that in a future module!
 
 ## Set up the Serverless backend
 
-Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend that the frontend site can make requests to.
+Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend to which the frontend site can make requests.
 
 > :warning: Before moving on to this task, make sure you have successfully deployed your HTML files to your S3 Bucket.
 
@@ -155,8 +157,7 @@ Revisit your diagram again. What services will you need to research next?
 
 Can you flesh out your understanding of the connection between the static site, API Gateway and AWS Lambda?
 
-Where could you look to figure out what kind of requests and responses the the arrows represent?
-
+Where could you look to figure out what kind of requests and responses the arrows represent?
 Improve this diagram as you learn more.
 
 ### Tasks
@@ -168,10 +169,9 @@ Improve this diagram as you learn more.
 ### Check your understanding
 
 You've set up your first Serverless backend, congratulations on the hard and great work!
-Here are some questions to help you deepen your understanding of what you've built:
+Here are some questions to help you deepen your understanding of Serverless architectures and AWS Lambda:
 
-- Is API Gateway the only way of invoking a Lambda function?
-- Could you invoke a Lambda function directly?
+- Is API Gateway the only way of invoking a Lambda function? Could you invoke a Lambda function directly? 
 - What are the advantages of using API Gateway? Do some research and discuss what you find with a peer, the cohort or a coach.
 
 Feel free to play around and try things out. 
@@ -189,7 +189,7 @@ Think about what could have been improved in this project:
 
 Configure your Serverless backend so that you can monitor and view logs for it in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-### Look ahead
+### 
 
 If you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration using **Terraform**.
 What benefits do you think it can bring to a larger project or even to this one?
