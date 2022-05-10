@@ -79,7 +79,7 @@ If you think it would be useful for your understanding, make a note to discuss t
 
 Consult your diagrams again and revisit what you have learned so far about CI-CD pipelines and their benefits.
 What checks and actions should your CI-CD pipeline perform? When should these checks and actions be run?
-Remember that, ultimately, the idea is for your pipeline to only proceed to deploying the code if the checks pass.
+Remember that, ultimately, the idea is for the pipeline to only proceed to deploying the code if the checks pass.
 
 ![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true "Deployment process diagram")
 
@@ -143,12 +143,11 @@ Try to be as detailed and specific as possible in your descriptions of each step
   :bulb: The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs and GitHub Webhook logs will help you figure out what happens behind the scenes when you do a push. If you've had a look and things still seem incomprehensible, don't worry. Keep going with the project for now and bring it up with a coach later.
 </details>
 
-
 ## Set up the Serverless backend
 
 Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend to which the frontend site can make requests.
 
-> :warning: Before moving on to this task, make sure you have successfully deployed your HTML files to your S3 Bucket.
+> :warning: Before moving on to this task, make sure you have successfully deployed the HTML files to the S3 Bucket.
 
 ### Diagramming the backend
 
@@ -164,7 +163,7 @@ Improve this diagram as you learn more.
 ### Tasks
 
 - Using the AWS Lambda service in the AWS Console, set up set up an Python Lambda function whose definition matches the one in the [`your-first-lambda.py`](your-first-lambda.py) file. Do not forget to modify it!
-- Set up an API Gateway **endpoint** which, will **invoke** the Lambda function you created whenever a request is made to it. Explore the [`www/index.html`](www/index.html) file. Can you spot which type of request your website performs?
+- Set up an API Gateway **endpoint** which, will **invoke** the Lambda function you created whenever a request is made to it. Explore the [`www/index.html`](www/index.html) file. Can you spot which type of request the website performs?
 - Connect the static site to the API Gateway endpoint.
 
 ### Check your understanding
