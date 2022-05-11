@@ -124,25 +124,6 @@ Why did you need to do so?
 Illustrate the high-level process by which Jenkins is grant access to S3 on the deployment diagram but don't worry about understanding the AWS mechanisms behind this in full detail.
 You'll be covering that in a future module!
 
-#### How does Jenkins get access to your repo?
-
-You've set up a connection between Jenkins running on the EC2 instance and your GitHub repository.
-But how does it work?
-
-- Via what mechanism does Jenkins find out there was a change to your GitHub repo? 
-- How does Jenkins retrieve a copy of the code in the repository? 
-
- Drawing a [sequence diagram](https://playground.diagram.codes/d/sequence) is a good tool for investigating this. Here's an example to help you get started:
-
-![Application diagram](assets/jenkins_github_sequence_diagram.svg "Application diagram")
-
-Try to be as detailed and specific as possible in your descriptions of each step.
-
-<details>
-  <summary><b>Stuck?</b> Click here for some hints.</summary>
-  :bulb: The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs and GitHub Webhook logs will help you figure out what happens behind the scenes when you do a push. If you've had a look and things still seem incomprehensible, don't worry. Keep going with the project for now and bring it up with a coach later.
-</details>
-
 ## Set up the Serverless backend
 
 Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend to which the frontend site can make requests.
@@ -178,21 +159,51 @@ Feel free to play around and try things out.
 
 ## Bonus
 
-### Improve your CI-CD pipeline
+The following are possible extension tasks you could work on once you've completed the main project. 
+Here are some pathways you might choose depending on what you want to learn (go back to this week's learning objectives if you're unsure), how much challenge you want to take on, and how much structure or freedom you would like. 
+Tackle them in any order you like — you almost certainly won't complete them all.
 
-Think about what could have been improved in this project:
+### Monitoring and debugging Lambda functions
 
-- Are there any drawbacks to putting both the CI and CD bits in one single `Jenkinsfile`? Can you find a way to put them in separate scripts but preserve the automatic deployment behaviour?
-- Is there another way in which you could have created the API Gateway and your Lambda function rather than manually through the AWS Console? How might you be able to automatically deploy changes to the Lambda function code?
+Find out how to monitor and view logs for your Serverless backend in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
 
-### Monitoring and logging
+You may want to deliberately add some logging to the Lambda function code or introduce bugs that will cause the code to throw errors - are you able to find evidence of that in the logs?
 
-Configure your Serverless backend so that you can monitor and view logs for it in [AWS CloudWatch](https://aws.amazon.com/cloudwatch/).
+### Deploy the Lambda function automatically
 
-### Infrastructure Management 
+Find a way to automatically deploy changes to the Lambda function code instead of manually pasting them into the AWS Console. 
 
-If you have some extra time this week, start reading and getting familiar with Infrastructure Management and Orchestration using **Terraform**.
-What benefits do you think it can bring to a larger project or even to this one?
+### Use separate pipelines for testing and deployment
+
+At the moment, the CI-CD pipeline immediately deploys whenever tests pass.
+This might not always be appropriate or safe for all projects (why not?).
+
+Find a way to *decouple* testing from deployment by using two different `Jenkinsfile`s rather than one.
+
+### Feature testing
+
+At the moment, the website has no feature tests that make sure that the backend and frontend work well together.
+Research and build a way to automatically run feature tests against your Serverless app before deploying it to production.
+
+### Improve your understanding of how DevOps tools work together
+
+You've set up a connection between Jenkins running on the EC2 instance and your GitHub repository.
+But how does it work?
+
+- Via what mechanism does Jenkins find out there was a change to your GitHub repo? 
+- How does Jenkins retrieve a copy of the code in the repository? 
+
+ Drawing a [sequence diagram](https://playground.diagram.codes/d/sequence) is a good tool for investigating this. Here's an example to help you get started:
+
+![Application diagram](assets/jenkins_github_sequence_diagram.svg "Application diagram")
+
+Try to be as detailed and specific as possible in your descriptions of each step.
+Share your diagram with a coach to get feedback.
+
+<details>
+  <summary><b>Stuck?</b> Click here for some hints.</summary>
+  :bulb: The documentation for the Jenkins Git Plugin as well as reading the Jenkins logs and GitHub Webhook logs will help you figure out what happens behind the scenes when you do a push. 
+</details>
 
 ## Documentation
 
