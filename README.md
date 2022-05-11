@@ -159,9 +159,8 @@ Feel free to play around and try things out.
 
 ## Bonus
 
-The following are possible extension tasks you could work on once you've completed the main project. 
-Here are some pathways you might choose depending on what you want to learn (go back to this week's learning objectives if you're unsure), how much challenge you want to take on, and how much structure or freedom you would like. 
-Tackle them in any order you like — you almost certainly won't complete them all.
+Here are some pathways you might choose depending on what you want to learn next (go back to this week's learning objectives if you're unsure), how much challenge you want to take on, and how much structure or freedom you would like. 
+Feel free to tackle them in any order you like — you almost certainly won't complete them all.
 
 ### Monitoring and debugging Lambda functions
 
