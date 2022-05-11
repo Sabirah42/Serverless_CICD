@@ -223,6 +223,3 @@ Share your diagram with a coach to get feedback.
 - [Automating Continuous Integration through Jenkins](https://dev.to/alakazam03/automating-continuous-integration-through-jenkins-448b)
 - [Using AWS Lambda with Amazon API Gateway](https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway.html)
 
-### Additional Resources
-
-- [Terraform](https://www.terraform.io/docs/index.html)
