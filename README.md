@@ -99,7 +99,7 @@ Below you will find a high-level list of the tasks that are necessary for you to
 - By writing a `Jenkinsfile`, set up the CI part of your pipeline. It should run checks to make sure the code in your repository is good to be deployed.
 - Extend the `Jenkinsfile` with a step that deploys the application to the S3 bucket you created initially.
 
-> :information_source: Not all of the tasks above need to be completed in the exact order they are given here.  Guides you may come across in your research might go through these in a slightly different order. So don't worry if you end deviating from the order presented here.
+> :information_source: Not all of the tasks above need to be completed in the exact order they are given here.  Guides you may come across in your research might go through these in a slightly different order. So don't worry if you end up deviating from the order presented here.
 
 ### Check your understanding
 
