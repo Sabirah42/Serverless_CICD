@@ -121,7 +121,7 @@ Again, make a note to check your understanding with a peer, the cohort or a coac
 Via what mechanism did you give Jenkins access to make changes to your S3 bucket? 
 Why did you need to do so? 
 
-Illustrate the high-level process by which Jenkins is grant access to S3 on the deployment diagram but don't worry about understanding the AWS mechanisms behind this in full detail.
+Illustrate the high-level process by which Jenkins is granted access to S3 on the deployment diagram. Don't worry about understanding the AWS mechanisms behind this in full detail.
 You'll be covering that in a future module!
 
 ## Set up the Serverless backend
@@ -159,7 +159,8 @@ Feel free to play around and try things out.
 
 ## Bonus
 
-Here are some pathways you might choose depending on what you want to learn next (go back to this week's learning objectives if you're unsure), how much challenge you want to take on, and how much structure or freedom you would like. 
+Here are some pathways you might choose depending on what you want to learn next, how much challenge you want to take on, and how much structure or freedom you would like. Go back to this week's learning objectives or ask a coach if you'd like some advice with choosing one.
+
 Feel free to tackle them in any order you like — you almost certainly won't complete them all.
 
 ### Monitoring and debugging Lambda functions
