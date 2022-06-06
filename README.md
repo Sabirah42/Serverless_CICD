@@ -49,9 +49,7 @@ Keep modifying and expanding the diagrams you've been given with what you find.
 ## Set up S3
 
 S3 is an [Object storage](https://cloud.netapp.com/blog/block-storage-vs-object-storage-cloud) service by AWS. 
-
-- Create an S3 Bucket and configure it to host your static website.
-- Check that the static site works by visiting it in your browser.
+Create an S3 Bucket and configure it to host a static website.
 
 ## Set up Jenkins
 
@@ -97,7 +95,9 @@ Below you will find a high-level list of the tasks that are necessary for you to
 - Give Jenkins access to your GitHub repository by giving Jenkins the right **credentials**.
 - Using a **webhook**, set up GitHub to automatically trigger your pipeline. What events should ideally trigger your pipeline to run?
 - By writing a `Jenkinsfile`, set up the CI part of your pipeline. It should run checks to make sure the code in your repository is good to be deployed.
-- Extend the `Jenkinsfile` with a step that deploys the application to the S3 bucket you created initially.
+- Extend the `Jenkinsfile` with a step that deploys the application to the S3 bucket you created initially. 
+
+The app has been successfully deployed if upon accessing the S3 static website endpoint in your browser, you see a website with the text "Hello all! What happens when you click on the button below?" and a button that says "Click me".
 
 > :information_source: Not all of the tasks above need to be completed in the exact order they are given here.  Guides you may come across in your research might go through these in a slightly different order. So don't worry if you end up deviating from the order presented here.
 
@@ -114,7 +114,62 @@ Here are a few questions to ask yourself and try to answer through a bit of rese
 - What part of your `Jenkinsfile` ensures that the correct version of Python will be available to run the code? How?
 - What does the `stage` keyword mean? How does it relate to the diagram you drew to illustrate the CI-CD pipeline you planned?
 
-Again, make a note to check your understanding with a peer, the cohort or a coach.
+<details>
+<summary><b>Had a go?</b> Check your answers</summary>
+
+Below is a `Jenkinsfile` similar to the one you might have written with the important bits annotated.
+
+If you have some questions or uncertainties left after comparing this with what you found in your research, do bring them up to a coach! 
+
+
+```Groovy
+pipeline {
+    // Defines the default "agent" that should be used to run the commands in the rest of this file.
+    // A Jenkins agent is the entity that actually executes the commands you specify in the pipeline. Agents run on a (virtual) machine or Docker container.
+    // Specifying "any" means that Jenkins will use any available agent. Because we haven't explicitly configured any other way of running agents, Jenkins will use the machine it is installed on to run agents.
+    // In this case that means commands will be executed on the EC2 instance we installed Jenkins on.
+    agent any
+
+    stages {
+
+        // Defines one logical "piece" of the pipeline called "test". We could have called it something else too. The name can be anything we want but it's best to make it descriptive of what it's meant to achieve.
+        stage('test') { 
+
+            // All commands run in this stage will run inside a container based on the python:3.5.1 Docker image. 
+            // The Docker container will be spun up by Jenkins automatically. 
+            // If we didn't run this step in a Docker container, we'd have to make sure that Python is installed on the EC2 instance
+            // so that we can use the `python` command later on to run tests. 
+            // Using Docker is any easy way of making sure our commands run in the right environment.
+            agent { docker { image 'python:3.5.1' } }
+
+            // This block contains the commands that we want to execute during the "test" part of the pipeline. 
+            // The exact commands that go in here are up to us.
+            // If any command in this block returns an error, the pipeline fails and stops running.
+            steps {
+
+                // The `sh` bit tells Jenkins to run this command inside a shell. The rest of this line is the command needed to get our tests to run. 
+                sh 'python sample_unit_test.py'
+            }
+        }
+
+        // Defines a second piece of the pipeline called "deploy".
+        // This stage runs if and only if the previous stage succeeded. 
+        stage('deploy') {
+
+            // This step doesn't define an agent to use so it will
+            // use the agent specified at the start of the file, i.e. the EC2 instance.
+            steps {
+
+                // Uses the AWS CLI to upload all files under www/ to to S3
+                sh 'aws s3 cp www/ s3://serverless-cicd.simo.makers.tech --recursive'
+            }
+        }
+    }
+}
+```
+
+
+</details>
 
 #### How does Jenkins get access to S3?
 
@@ -128,7 +183,7 @@ You'll be covering that in a future module!
 
 Now that automatic deployment of the static site works, the next task is to make it dynamic by building a backend to which the frontend site can make requests.
 
-> :warning: Before moving on to this task, make sure you have successfully deployed the HTML files to the S3 Bucket.
+> :warning: Before moving on to this task, make sure you have successfully deployed the HTML files to the S3 Bucket. 
 
 ### Diagramming the backend
 
