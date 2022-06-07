@@ -2,12 +2,12 @@
 
 ## Objectives
 
-Learn to:
-- Design a CI-CD pipeline
-- Build a CI-CD pipeline using Jenkins
-- Interact with AWS using the command line
-- Automate the software development lifecycle by connecting different developer tools to each other
-- Debugging connectivity issues between tools running in the Cloud
+Learn:
+- To design a CI-CD pipeline
+- To build a CI-CD pipeline using Jenkins
+- To interact with AWS using the command line
+- How to connect different developer tools to each other in order to automate the software development lifecycle
+- To debug connectivity issues between tools running in the Cloud
 
 ## Create a diagram of your desired pipeline
 
