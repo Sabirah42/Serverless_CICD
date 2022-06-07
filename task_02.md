@@ -5,7 +5,7 @@
 Learn to:
 - Use a fundamental AWS service: EC2
 - Use SSH to connect to a virtual machine in the Cloud
-- Install a software on a virtual machine in the Cloud
+- Install software on a virtual machine in the Cloud
 - Understand the benefits of hosting developer tools in the Cloud
 
 ## Getting started

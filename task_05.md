@@ -13,7 +13,7 @@ Feel free to tackle them in any order you like — you almost certainly won't co
 - **[Feature testing](#feature-testing)**  
   To develop you understanding of the advantages and disadvantages of a Serverless architecture and practise building a more complex CI-CD pipelines.
 - **[Improve your understanding of how DevOps tools work together](#improve-your-understanding-of-how-devops-tools-work-together)**    
-  A diagramming activity to help you explore the inner workings of the system you've been building.
+  A diagramming activity to help you explore and understand the inner workings of the system you've been building.
   
 
 ## Monitoring and debugging Lambda functions

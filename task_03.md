@@ -7,6 +7,7 @@ Learn to:
 - Build a CI-CD pipeline using Jenkins
 - Interact with AWS using the command line
 - Automate the software development lifecycle by connecting different developer tools to each other
+- Debugging connectivity issues between tools running in the Cloud
 
 ## Create a diagram of your desired pipeline
 
