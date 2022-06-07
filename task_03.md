@@ -51,7 +51,7 @@ Here are a few questions to ask yourself and try to answer through a bit of rese
 - What does the `stage` keyword mean? How does it relate to the diagram you drew to illustrate the CI-CD pipeline you planned?
 
 <details>
-<summary><b>Had a go?</b> Check your answers</summary>
+<summary><b>Had a go?</b> Check your answers here.</summary>
 
 Below is a `Jenkinsfile` similar to the one you might have written. The important bits are annotated.
 
@@ -61,19 +61,25 @@ If you have some questions or uncertainties left after comparing this with what 
 ```Groovy
 pipeline {
     // Defines the default "agent" that should be used to run the commands in the rest of this file.
-    // A Jenkins agent is the entity that actually executes the commands you specify in the pipeline. Agents run on a (virtual) machine or Docker container.
-    // Specifying "any" means that Jenkins will use any available agent. Because we haven't explicitly configured any other way of running agents, Jenkins will use the machine it is installed on to run agents.
+    // A Jenkins agent is the entity that actually executes the commands you specify in the pipeline.
+    // Agents run on a (virtual) machine or Docker container.
+    // Specifying "any" means that Jenkins will use any available agent.
+    // Because we haven't explicitly configured any other way of running agents,
+    // Jenkins will use the machine it is installed on to run agents.
     // In this case that means commands will be executed on the EC2 instance we installed Jenkins on.
     agent any
 
     stages {
 
-        // Defines one logical "piece" of the pipeline called "test". We could have called it something else too. The name can be anything we want but it's best to make it descriptive of what it's meant to achieve.
+        // Defines one logical "piece" of the pipeline called "test".
+        // We could have called it something else too.
+        // The name can be anything we want but it's best to make it descriptive of what it's meant to achieve.
         stage('test') { 
 
             // All commands run in this stage will run inside a container based on the python:3.5.1 Docker image. 
             // The Docker container will be spun up by Jenkins automatically. 
-            // If we didn't run this step in a Docker container, we'd have to make sure that Python is installed on the EC2 instance
+            // If we didn't run this step in a Docker container,
+            // we'd have to make sure that Python is installed on the EC2 instance
             // so that we can use the `python` command later on to run tests. 
             // Using Docker is any easy way of making sure our commands run in the right environment.
             agent { docker { image 'python:3.5.1' } }
@@ -83,7 +89,8 @@ pipeline {
             // If any command in this block returns an error, the pipeline fails and stops running.
             steps {
 
-                // The `sh` bit tells Jenkins to run this command inside a shell. The rest of this line is the command needed to get our tests to run. 
+                // The `sh` bit tells Jenkins to run this command inside a shell.
+                // The rest of this line is the command needed to get our tests to run. 
                 sh 'python sample_unit_test.py'
             }
         }
@@ -124,6 +131,6 @@ You'll be covering that in a future module!
 - [Jenkins: Creating your first pipeline](https://www.jenkins.io/doc/pipeline/tour/hello-world/)
 - [Automating Continuous Integration through Jenkins](https://dev.to/alakazam03/automating-continuous-integration-through-jenkins-448b)
 
----
+## Done?
 
 [Go to the next task](task_04.md)

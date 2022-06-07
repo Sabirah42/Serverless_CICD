@@ -4,9 +4,9 @@
 
 Learn to:
 - Use a fundamental AWS service: EC2
-- To connect to a virtual machine in the Cloud
-- To install a software on a virtual machine in the Cloud
-- Understand the benefits of hosting a developer tools in the Cloud
+- Use SSH to connect to a virtual machine in the Cloud
+- Install a software on a virtual machine in the Cloud
+- Understand the benefits of hosting developer tools in the Cloud
 
 ## Getting started
 
@@ -33,6 +33,6 @@ Submit your answers to a coach for feedback.
 - [Connect to your Linux instance using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html)
 - [Jenkins on AWS](https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/)
 
----
+## Done?
 
 [Go to the next task](task_03.md)
