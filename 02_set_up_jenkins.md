@@ -68,10 +68,6 @@ You will need to add your bucket name to the template before uploading it.
 
    ![A screenshot showing the Jenkins dashboard](assets/jenkins_dashboard.png)
 
-## Done?
-
-[Go to the next task](03_set_up_pipeline.md)
-
 
 [Next Challenge](03_set_up_pipeline.md)
 

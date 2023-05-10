@@ -263,10 +263,6 @@ A sample policy for your User Group:
 }
 ```
 
-## Done?
-
-[Go to the next task](04_set_up_serverless.md)
-
 
 [Next Challenge](04_set_up_serverless.md)
 
