@@ -65,10 +65,6 @@ upload it to the bucket to see it live:
 </html>
 ```
 
-## Done?
-
-[Go to the next task](02_set_up_jenkins.md)
-
 
 [Next Challenge](02_set_up_jenkins.md)
 

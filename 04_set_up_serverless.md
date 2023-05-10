@@ -113,10 +113,6 @@ change.
 
 Well done! You've completed all the core material for this module.
 
-## Done?
-
-[Go to the bonus material](05_bonus.md)
-
 
 [Next Challenge](05_bonus.md)
 
