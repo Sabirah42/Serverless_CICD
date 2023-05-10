@@ -1,0 +1,29 @@
+<html>
+  <script>
+    async function handleClick() {
+      let response = await fetch("https://YOUR_LAMBDA_URL_HERE");
+      let text = await response.text();
+      document.getElementById("response").innerHTML = text;
+      document.getElementById("img").src = 'https://images.unsplash.com/photo-1540573133985-87b6da6d54a9';
+    }
+  </script>
+  <body>
+    <div align="center">
+      <br /><br /><br /><br />
+      <h1>
+        Hello </span
+        ><span id="response">all! What happens when you click on the button below?</span>
+      </h1>
+
+      <button onclick="handleClick()">Click me</button><br />
+      <br /><br />
+      <img
+        id="img"
+        width="1000"
+        height="1000"
+        src="https://images.unsplash.com/photo-1529247833802-700f53170380"
+      />
+    </div>
+  </body>
+</html>
+
