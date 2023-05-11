@@ -255,8 +255,8 @@ A sample policy for your User Group:
                 "s3:PutObjectAcl"
             ],
             "Resource": [
-                "arn:aws:s3:::kaylack-serverless-cicd",
-                "arn:aws:s3:::kaylack-serverless-cicd/*"
+                "arn:aws:s3:::YOUR_BUCKET_NAME",
+                "arn:aws:s3:::YOUR_BUCKET_NAME/*"
             ]
         }
     ]
