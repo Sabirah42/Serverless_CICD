@@ -31,7 +31,7 @@ pipeline is going to have to do, and in what order.
 
 Here's a starting point:
 
-![Deployment process diagram](assets/deployment_process_diagram.jpg?raw=true
+![Deployment process diagram showing Github connected to Jenkins connected to AWS S3 Bucket](assets/deployment_process_diagram.jpg?raw=true
 "Deployment process diagram")
 
 Copy out this diagram and add some detail to what Jenkins will need to do.

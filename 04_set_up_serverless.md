@@ -23,7 +23,7 @@ HTTP endpoint URL that will invoke (run) our Lambda function.
 
 Revisit your diagram again.
 
-![Application diagram](assets/application_diagram.jpg?raw=true "Application
+![Application diagram as shown in the README of this project](assets/application_diagram.jpg?raw=true "Application
 diagram")
 
 Can you flesh out your understanding of the connection between the static site,

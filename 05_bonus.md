@@ -67,7 +67,7 @@ GitHub repository. But how does it work?
  Drawing a [sequence diagram](https://playground.diagram.codes/d/sequence) is a
  good tool for investigating this. Here's an example to help you get started:
 
-![Application diagram](assets/jenkins_github_sequence_diagram.svg "Application
+![Sequence diagram showing a dev pushing to Github and Github then connecting to Jenkins](assets/jenkins_github_sequence_diagram.svg "Developer flow sequence
 diagram")
 
 Try to be as detailed and specific as possible in your descriptions of each
